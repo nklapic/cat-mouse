@@ -1,0 +1,46 @@
+<html lang="en">
+<script>
+  var score = 0;
+  var delay = '10ms';
+
+  window.onload = function() {
+    document.getElementById("score").innerText = score;
+    document.getElementById("delay").value = delay;
+    document.getElementById("mouse").style.transition = `all ${delay} ease-in-out`
+  }
+
+  function changeDelay(value) {
+
+    if (!value.endsWith("ms") && !values.endsWith("s")) {
+      alert("Invalid delay value")
+    }
+    document.getElementById("mouse").style.transition = `all ${value} ease-in-out`
+  }
+
+  function increaseScore() {
+    document.getElementById("score").innerText = ++score;
+  }
+
+  document.onmousemove = function(event) {
+    document.getElementById("mouse").style.left = `${event.clientX + 40}px`;
+    document.getElementById("mouse").style.top = `${event.clientY + 40}px`;
+  }
+
+</script>
+
+<style>
+    body {
+        cursor: pointer;
+    }
+</style>
+
+<body>
+ <div>Score: <span id="score"></span></div>
+ <label for="delay">Delay</label>
+ <input type="text" id="delay" oninput="changeDelay(this.value)"/>
+
+ <div id="mouse" style="background-color: beige; width: 65px; height: 30px; position: absolute;">
+    <button onclick="increaseScore()">Mouse</button>
+ </div>
+</body>
+</html>
